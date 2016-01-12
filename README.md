@@ -16,9 +16,9 @@ $ npm install dropbox-backup --save
 var DropboxBackup = require('./lib/index.js');
 
 var backup = new DropboxBackup({
-    key: "f9bnbl6mewf9esz",
-    secret: "903y0mzripb7epq",
-    token: "xqD3RsliawoAAAAAAAAAHx4z1yr3m6cNh18xF60q_t9oxFtIwupPc_93P1srzAGr"
+    key: "DROPBOXKEY",
+    secret: "DROPBOXSECRET",
+    token: "DROPBOXTOKEN"
 });
 
 backup.run('test', function (x) {
