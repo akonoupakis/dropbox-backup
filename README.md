@@ -13,7 +13,29 @@ $ npm install dropbox-backup --save
 ### Usage
 
 ```js
+var DropboxBackup = require('./lib/index.js');
 
+var backup = new DropboxBackup({
+    key: "f9bnbl6mewf9esz",
+    secret: "903y0mzripb7epq",
+    token: "xqD3RsliawoAAAAAAAAAHx4z1yr3m6cNh18xF60q_t9oxFtIwupPc_93P1srzAGr"
+});
+
+backup.run('test', function (x) {
+
+    //=> add a directory to the archive
+    x.archive.directory('./lib', 'lib');
+
+    //=> add a file to the archive
+    x.archive.directory('./file.txt', 'file.txt');
+
+    x.upload(function (err) {
+        if (err)
+            throw err;
+        else
+            console.log('completed');
+    });
+});
 ```
 
 
