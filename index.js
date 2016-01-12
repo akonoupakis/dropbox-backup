@@ -1,10 +1,10 @@
 ﻿var fs = require('fs-extra');
 var path = require('path');
-var server = require('server-root');
 var jsonValidation = require('json-validation');
 var Dropbox = require("dropbox");
 var archiver = require('archiver');
 var moment = require('moment');
+var server = require('server-root');
 var _ = require('underscore');
 
 var optionsSchema = {
@@ -34,20 +34,29 @@ var DropboxArchive = function (options, ctx, next) {
 };
 
 DropboxArchive.prototype.upload = function (cb) {
+    var self = this;
+
     this.ctx.cb = cb;
 
-    var output = fs.createWriteStream(server.getPath('temp/' + this.options.key + '/' + this.ctx.date.format("YYYYMMDDHHmm") + '.zip'));
-    this.archive.pipe(output);
+    var output = fs.createWriteStream('./temp/' + this.options.key + '/' + this.ctx.date.format("YYYYMMDDHHmm") + '.zip');
 
+    output.on('close', function () {
+        self.next();
+    });
+
+    output.on('error', function (err) {
+        cb(err);
+    });
+
+    this.archive.pipe(output);
     this.archive.finalize();
-    this.next();
 };
 
 var FolderProcessor = function () { };
 FolderProcessor.prototype.process = function (ctx, next) {
     console.log('creating backup folder...');
 
-    fs.emptyDir(server.getPath('temp/' + ctx.name), function (err) {
+    fs.emptyDir('./temp/' + ctx.name, function (err) {
         if (err) {
             ctx.error(ctx, err);
         }
@@ -75,7 +84,7 @@ UploadProcessor.prototype.process = function (ctx, next) {
         token: ctx.options.token,
         sandbox: false
     });
-    
+
     var proceedUpload = function (name, dayCount, nextInternal) {
         client.readdir('/' + name, {}, function (error, results) {
             if (error) {
@@ -92,7 +101,7 @@ UploadProcessor.prototype.process = function (ctx, next) {
                 if (lastUploadedDate === undefined || ctx.date.diff(lastUploadedDate, 'days', true) > dayCount) {
 
                     console.log('uploading ' + '"/' + name + '/' + ctx.date.format('YYYYMMDDHHmm') + '.zip"');
-                    fs.readFile(server.getPath('temp/' + ctx.name + '/' + ctx.date.format('YYYYMMDDHHmm') + '.zip'), function (err, fileData) {
+                    fs.readFile('./temp/' + ctx.name + '/' + ctx.date.format('YYYYMMDDHHmm') + '.zip', function (err, fileData) {
                         if (err) {
                             ctx.error(err);
                         }
@@ -187,12 +196,12 @@ UploadOnDemandProcessor.prototype.process = function (ctx, next) {
     });
 
     console.log('uploading ' + '"/' + self.name + '.zip"');
-    fs.readFile(server.getPath('temp/' + ctx.options.key + '/' + ctx.date.format('YYYYMMDDHHmm') + '.zip'), function (err, fileData) {
+    fs.readFile('./temp/' + ctx.options.key + '/' + ctx.date.format('YYYYMMDDHHmm') + '.zip', function (err, fileData) {
         if (err) {
             ctx.error(err);
         }
         else {
-            client.writeFile('/' + self.name + '.zip', fileData, function (err, data) {
+            client.writeFile('/' + self.name + '.zip', fileData, { binary: true }, function (err, data) {
                 if (err) {
                     ctx.error(err);
                 }
@@ -202,14 +211,13 @@ UploadOnDemandProcessor.prototype.process = function (ctx, next) {
             });
         }
     });
-    
+
 };
 
 var ResetProcessor = function () { };
 ResetProcessor.prototype.process = function (ctx, next) {
     console.log('removing temporary files...');
-
-    fs.remove(server.getPath('temp/' + ctx.name), function (err) {
+    fs.remove('./temp/' + ctx.name, function (err) {
         if (err) {
             ctx.error(ctx, err);
         }
@@ -272,7 +280,7 @@ DropboxBackup.prototype.run = function (name, fn) {
         processors.push(new UploadOnDemandProcessor(nameInternal));
     else
         processors.push(new UploadProcessor());
-        
+
     processors.push(new ResetProcessor());
     processors.push({
         process: function () {
@@ -282,7 +290,7 @@ DropboxBackup.prototype.run = function (name, fn) {
                 console.log('backup complete');
         }
     });
-    
+
     var nextIndex = 0;
     var next = function () {
         nextIndex++;
