@@ -2,6 +2,14 @@
 
 > A backup utility for dropbox applications.
 
+## Overview
+
+This small utility is built to be used as a cron job for daily use.
+If so, it would keep the last 3 daily/weekly/monthly backups on structured folders.
+
+Also, you may speficy a custom name, to run a backup on demand, 
+resulting with the output file in the root of the dropbox application.
+
 ## Install
 
 Install with [npm](https://www.npmjs.com/)
