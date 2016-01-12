@@ -1,6 +1,6 @@
 {
 	"name": "dropbox-backup",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "A backup utility for dropbox applications",
 	"author": {
 		"name": "Apostolis Konoupakis",
