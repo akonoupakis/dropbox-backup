@@ -38,7 +38,7 @@ DropboxArchive.prototype.upload = function (cb) {
 
     this.ctx.cb = cb;
 
-    var output = fs.createWriteStream('./temp/' + this.options.key + '/' + this.ctx.date.format("YYYYMMDDHHmm") + '.zip');
+    var output = fs.createWriteStream('./temp/' + this.options.key + '/' + this.ctx.date.format("YYYYMMDDHHmmss") + '.zip');
 
     output.on('close', function () {
         self.next();
@@ -96,27 +96,32 @@ UploadProcessor.prototype.process = function (ctx, next) {
 
                 var lastUpload = _.last(filteredResults);
 
-                var lastUploadedDate = lastUpload ? moment(path.basename(lastUpload, '.zip'), 'YYYYMMDDHHmm') : undefined;
+                var lastUploadedDate = lastUpload ? moment(path.basename(lastUpload, '.zip'), 'YYYYMMDDHHmmss') : undefined;
 
                 if (lastUploadedDate === undefined || ctx.date.diff(lastUploadedDate, 'days', true) > dayCount) {
 
-                    console.log('uploading ' + '"/' + name + '/' + ctx.date.format('YYYYMMDDHHmm') + '.zip"');
-                    fs.readFile('./temp/' + ctx.name + '/' + ctx.date.format('YYYYMMDDHHmm') + '.zip', function (err, fileData) {
+                    console.log('uploading ' + '"/' + name + '/' + ctx.date.format('YYYYMMDDHHmmss') + '.zip"');
+                    fs.readFile('./temp/' + ctx.name + '/' + ctx.date.format('YYYYMMDDHHmmss') + '.zip', function (err, fileData) {
                         if (err) {
                             ctx.error(err);
                         }
                         else {
-                            client.writeFile('/' + name + '/' + ctx.date.format('YYYYMMDDHHmm') + '.zip', fileData, function (err, data) {
+                            client.writeFile('/' + name + '/' + ctx.date.format('YYYYMMDDHHmmss') + '.zip', fileData, function (err, data) {
                                 if (err) {
                                     ctx.error(err);
                                 }
                                 else {
-                                    for (var i = 0; i < ctx.options.restricted--; i++) {
-                                        filteredResults.pop();
-                                    }
+
+                                    var obsoleteUploads = [];
+
+                                    filteredResults.reverse();
+                                    _.each(filteredResults, function (r, i) {
+                                        if (i >= 2)
+                                            obsoleteUploads.push(r);
+                                    });
 
                                     var nextProcess = function () {
-                                        var firstResultName = filteredResults.shift();
+                                        var firstResultName = obsoleteUploads.shift();
                                         if (firstResultName) {
                                             client.delete('/' + name + '/' + firstResultName, function (err, data) {
                                                 if (err) {
@@ -140,7 +145,7 @@ UploadProcessor.prototype.process = function (ctx, next) {
 
                 }
                 else {
-                    console.log('skipped ' + '"/' + name + '/' + ctx.date.format('YYYYMMDDHHmm') + '.zip"');
+                    console.log('skipped ' + '"/' + name + '/' + ctx.date.format('YYYYMMDDHHmmss') + '.zip"');
                     nextInternal();
                 }
 
@@ -196,7 +201,7 @@ UploadOnDemandProcessor.prototype.process = function (ctx, next) {
     });
 
     console.log('uploading ' + '"/' + self.name + '.zip"');
-    fs.readFile('./temp/' + ctx.options.key + '/' + ctx.date.format('YYYYMMDDHHmm') + '.zip', function (err, fileData) {
+    fs.readFile('./temp/' + ctx.options.key + '/' + ctx.date.format('YYYYMMDDHHmmss') + '.zip', function (err, fileData) {
         if (err) {
             ctx.error(err);
         }
