@@ -1,6 +1,6 @@
 {
 	"name": "dropbox-backup",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"description": "a backup utility for dropbox applications",
 	"author": {
 		"name": "Apostolis Konoupakis",
@@ -15,6 +15,9 @@
 		"url": "https://github.com/akonoupakis/dropbox-backup/issues"
 	},
 	"main": "index.js",
+	"scripts": {
+		"readme": "node ./node_modules/.bin/node-readme"
+	},
 	"license": "MIT",
 	"homepage": "https://github.com/akonoupakis/dropbox-backup",
 	"dependencies": {
@@ -25,5 +28,8 @@
 		"log4js": "^0.6.33",
 		"moment": "^2.11.1",
 		"underscore": "^1.8.3"
+	},
+	"devDependencies": {
+		"node-readme": "^0.1.9"
 	}
 }
