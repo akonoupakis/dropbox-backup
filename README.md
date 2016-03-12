@@ -2,6 +2,8 @@
 
 > A backup utility for dropbox applications.
 
+[![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url]
+
 ## Overview
 
 This small utility is built to be used as a cron job for daily use.
@@ -29,21 +31,29 @@ var backup = new DropboxBackup({
     token: "DROPBOXTOKEN"
 });
 
-backup.run('test', function (x) {
+var backupFn = function (x) {
 
     //=> add a directory to the archive
     x.archive.directory('./lib', 'lib');
 
     //=> add a file to the archive
-    x.archive.file('./file.txt', 'file.txt');
+    x.archive.file('file.txt');
 
+    //=> upload the archive to dropbox. 
+    //=> this takes an optional callback function
     x.upload(function (err) {
         if (err)
             throw err;
         else
             console.log('completed');
     });
-});
+}
+
+// upload the backup to the daily/weekly/monthly folders
+backup.run(backupFn);
+// or upload a single backup as test.js 
+backup.run('test', backupFn);
+
 ```
 
 
