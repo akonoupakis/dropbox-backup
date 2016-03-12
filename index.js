@@ -3,6 +3,7 @@ var path = require('path');
 var jsonValidation = require('json-validation');
 var Dropbox = require("dropbox");
 var archiver = require('archiver');
+var log4js = require('log4js');
 var moment = require('moment');
 var server = require('server-root');
 var _ = require('underscore');
@@ -54,7 +55,7 @@ DropboxArchive.prototype.upload = function (cb) {
 
 var FolderProcessor = function () { };
 FolderProcessor.prototype.process = function (ctx, next) {
-    console.log('creating backup folder...');
+    ctx.log('creating backup folder...');
 
     fs.emptyDir('./temp/' + ctx.name, function (err) {
         if (err) {
@@ -70,7 +71,7 @@ var ZipProcessor = function (fn) {
     this.fn = fn;
 };
 ZipProcessor.prototype.process = function (ctx, next) {
-    console.log('creating archive file...');
+    ctx.log('creating archive file...');
 
     var archive = new DropboxArchive(ctx.options, ctx, next);
     this.fn(archive);
@@ -100,7 +101,7 @@ UploadProcessor.prototype.process = function (ctx, next) {
 
                 if (lastUploadedDate === undefined || ctx.date.diff(lastUploadedDate, 'days', true) > dayCount) {
 
-                    console.log('uploading ' + '"/' + name + '/' + ctx.date.format('YYYYMMDDHHmmss') + '.zip"');
+                    ctx.log('uploading ' + '"/' + name + '/' + ctx.date.format('YYYYMMDDHHmmss') + '.zip"');
                     fs.readFile('./temp/' + ctx.name + '/' + ctx.date.format('YYYYMMDDHHmmss') + '.zip', function (err, fileData) {
                         if (err) {
                             ctx.error(err);
@@ -145,7 +146,7 @@ UploadProcessor.prototype.process = function (ctx, next) {
 
                 }
                 else {
-                    console.log('skipped ' + '"/' + name + '/' + ctx.date.format('YYYYMMDDHHmmss') + '.zip"');
+                    ctx.log('skipped ' + '"/' + name + '/' + ctx.date.format('YYYYMMDDHHmmss') + '.zip"');
                     nextInternal();
                 }
 
@@ -200,7 +201,7 @@ UploadOnDemandProcessor.prototype.process = function (ctx, next) {
         sandbox: false
     });
 
-    console.log('uploading ' + '"/' + self.name + '.zip"');
+    ctx.log('uploading ' + '"/' + self.name + '.zip"');
     fs.readFile('./temp/' + ctx.options.key + '/' + ctx.date.format('YYYYMMDDHHmmss') + '.zip', function (err, fileData) {
         if (err) {
             ctx.error(err);
@@ -221,7 +222,7 @@ UploadOnDemandProcessor.prototype.process = function (ctx, next) {
 
 var ResetProcessor = function () { };
 ResetProcessor.prototype.process = function (ctx, next) {
-    console.log('removing temporary files...');
+    ctx.log('removing temporary files...');
     fs.remove('./temp/' + ctx.name, function (err) {
         if (err) {
             ctx.error(ctx, err);
@@ -229,14 +230,6 @@ ResetProcessor.prototype.process = function (ctx, next) {
         else {
             next();
         }
-    });
-};
-
-var ErrorHandler = function () { };
-ErrorHandler.prototype.handle = function (ctx, ex) {
-    var resetProcessor = new ResetProcessor();
-    resetProcessor.process(ctx, function () {
-        throw ex;
     });
 };
 
@@ -248,8 +241,6 @@ var DropboxBackup = function (options) {
         throw new Error(validationResults.errors.join(", ") + " at path " + validationResults.path);
 
     this.options = options;
-
-    this.errorHandler = new ErrorHandler();
 };
 
 DropboxBackup.prototype.run = function (name, fn) {
@@ -261,21 +252,30 @@ DropboxBackup.prototype.run = function (name, fn) {
     if (typeof (fnInternal) !== 'function')
         throw new Error('an archive fucntion is required');
 
+    var logger = log4js.getLogger('dropbox-backup');
+
     var ctx = {};
     ctx.name = self.options.key;
     ctx.options = self.options;
     ctx.date = new moment(new Date());
+    ctx.log = function(message) {
+        logger.info(message);
+    };
     ctx.error = function (ex) {
         if (typeof (ctx.cb) === 'function')
             ctx.cb(ex);
-        else
-            self.errorHandler.handle(ex);
+        else {
+            var resetProcessor = new ResetProcessor();
+            resetProcessor.process(ctx, function () {
+                logger.error(ex);
+            });
+        }
     };
 
     var processors = [];
     processors.push({
         process: function (ctx, next) {
-            console.log('backup started');
+            ctx.log('backup started');
             next();
         }
     });
@@ -292,7 +292,7 @@ DropboxBackup.prototype.run = function (name, fn) {
             if (typeof (ctx.cb) === 'function')
                 ctx.cb();
             else
-                console.log('backup complete');
+                ctx.log('backup completed');
         }
     });
 
