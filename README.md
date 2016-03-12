@@ -1,9 +1,11 @@
 # dropbox-backup
 > a backup utility for dropbox applications
 
-<a href="https://nodei.co/npm/dropbox-backup/"><img src="https://nodei.co/npm/dropbox-backup.png"></a>
+[![NPM VERSION](https://img.shields.io/npm/v/dropbox-backup.svg)]
+[![GITHUB ISSUES](https://img.shields.io/github/issues-raw/akonoupakis/dropbox-backup.svg)](https://github.com/akonoupakis/dropbox-backup/issues)
+[![GITHUB LICENCE](https://img.shields.io/github/license/akonoupakis/dropbox-backup.svg)]
 
-[![NPM](https://nodei.co/npm/dropbox-backup.png)](https://nodei.co/npm/dropbox-backup/)
+[![NPM](https://nodei.co/npm/dropbox-backup.png?downloads=true)](https://nodei.co/npm/dropbox-backup/)
 
 ## Overview
 
@@ -13,15 +15,7 @@ If so, it would keep the last 3 daily/weekly/monthly backups on structured folde
 Also, you may speficy a custom name, to run a backup on demand, 
 resulting with the output file in the root of the dropbox application.
 
-## Install
-
-Install with [npm](https://www.npmjs.com/)
-
-```sh
-$ npm install dropbox-backup --save
-```
-
-### Usage
+## Usage
 
 ```js
 var DropboxBackup = require('dropbox-backup');
