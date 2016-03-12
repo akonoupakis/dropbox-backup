@@ -1,9 +1,9 @@
-# ${pkg.name}
-> ${pkg.description}
+# dropbox-backup
+> a backup utility for dropbox applications
 
-${badge('npm')} ${badge('license')} ${badge('github-issues')} ${badge('circleci')}
+<a href="https://nodei.co/npm/dropbox-backup/"><img src="https://nodei.co/npm/dropbox-backup.png"></a>
 
-${badge('nodei')}
+[![NPM](https://nodei.co/npm/dropbox-backup.png)](https://nodei.co/npm/dropbox-backup/)
 
 ## Overview
 
