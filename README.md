@@ -1,9 +1,7 @@
-# ${pkg.name}
-> ${pkg.description}
+# dropbox-backup
+> a backup utility for dropbox applications.
 
-${badge('npm')} ${badge('license')} ${badge('github-issues')}  ${badge('circleci')}
-
-${badge('nodei')}
+[![NPM version][npm-image]][npm-url]
 
 ## Overview
 
