@@ -1,29 +1,35 @@
 {
-	"name": "dropbox-backup",
-	"version": "1.0.8",
-	"description": "a backup utility for dropbox applications",
-	"author": {
-		"name": "Apostolis Konoupakis",
-		"email": "konoupakis@gmail.com",
-		"url": ""
-	},
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/akonoupakis/dropbox-backup.git"
-	},
-	"bugs": {
-		"url": "https://github.com/akonoupakis/dropbox-backup/issues"
-	},
-	"main": "index.js",
-	"license": "MIT",
-	"homepage": "https://github.com/akonoupakis/dropbox-backup",
-	"dependencies": {
-		"archiver": "^0.21.0",
-		"dropbox": "^0.10.3",
-		"fs-extra": "^0.26.4",
-		"json-validation": "^1.0.4",
-		"log4js": "^0.6.33",
-		"moment": "^2.11.1",
-		"underscore": "^1.8.3"
-	}
+  "name": "dropbox-backup",
+  "version": "1.0.8",
+  "description": "a backup utility for dropbox applications",
+  "author": {
+    "name": "Apostolis Konoupakis",
+    "email": "konoupakis@gmail.com",
+    "url": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/akonoupakis/dropbox-backup.git"
+  },
+  "bugs": {
+    "url": "https://github.com/akonoupakis/dropbox-backup/issues"
+  },
+  "main": "index.js",
+  "scripts": {
+    "readme": "node ./node_modules/.bin/node-readme"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/akonoupakis/dropbox-backup",
+  "dependencies": {
+    "archiver": "^0.21.0",
+    "dropbox": "^0.10.3",
+    "fs-extra": "^0.26.4",
+    "json-validation": "^1.0.4",
+    "log4js": "^0.6.33",
+    "moment": "^2.11.1",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "node-readme": "^0.1.9"
+  }
 }
