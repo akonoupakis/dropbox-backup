@@ -1,6 +1,5 @@
 # dropbox-backup
-
-> A backup utility for dropbox applications.
+> a backup utility for dropbox applications.
 
 [![NPM version][npm-image]][npm-url] [![Downloads][downloads-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url]
 
