@@ -5,7 +5,6 @@ var Dropbox = require("dropbox");
 var archiver = require('archiver');
 var log4js = require('log4js');
 var moment = require('moment');
-var server = require('server-root');
 var _ = require('underscore');
 
 var optionsSchema = {
