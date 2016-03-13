@@ -53,7 +53,7 @@ backup.run('test', backupFn);
 ```
 
 
-## license
+## License
 
     The MIT License (MIT)
 
