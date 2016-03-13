@@ -8,7 +8,10 @@ var backup = new DropboxBackup({
 
 var fn = function (x) {
 
-    x.archive.file('index.js');
+    x.archive.directory('C:\\test\\test3', '111/222');
+    x.archive.file('index.js', {
+        name: '22/33/index.js'        
+    });
 
     x.upload();
 };
