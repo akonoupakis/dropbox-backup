@@ -1,7 +1,6 @@
 # dropbox-backup
 > a backup utility for dropbox applications
 
-
 ![VERSION](https://img.shields.io/npm/v/dropbox-backup.svg)
 ![DOWNLOADS](https://img.shields.io/npm/dt/dropbox-backup.svg)
 [![ISSUES](https://img.shields.io/github/issues-raw/akonoupakis/dropbox-backup.svg)](https://github.com/akonoupakis/dropbox-backup/issues)
@@ -54,7 +53,7 @@ backup.run('test', backupFn);
 ```
 
 
-## license
+## License
 
     The MIT License (MIT)
 
