@@ -4,6 +4,7 @@
 ![VERSION](https://img.shields.io/npm/v/dropbox-backup.svg)
 ![DOWNLOADS](https://img.shields.io/npm/dt/dropbox-backup.svg)
 [![ISSUES](https://img.shields.io/github/issues-raw/akonoupakis/dropbox-backup.svg)](https://github.com/akonoupakis/dropbox-backup/issues)
+[![Build Status](https://api.travis-ci.org/akonoupakis/dropbox-backup.svg?branch=master)](http://travis-ci.org/akonoupakis/dropbox-backup)
 ![LICENCE](https://img.shields.io/npm/l/dropbox-backup.svg)
 
 [![NPM](https://nodei.co/npm/dropbox-backup.png?downloads=true)](https://nodei.co/npm/dropbox-backup/)
