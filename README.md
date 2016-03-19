@@ -4,8 +4,11 @@
 ![VERSION](https://img.shields.io/npm/v/dropbox-backup.svg)
 ![DOWNLOADS](https://img.shields.io/npm/dt/dropbox-backup.svg)
 [![ISSUES](https://img.shields.io/github/issues-raw/akonoupakis/dropbox-backup.svg)](https://github.com/akonoupakis/dropbox-backup/issues)
-[![Build Status](https://api.travis-ci.org/akonoupakis/dropbox-backup.svg?branch=master)](http://travis-ci.org/akonoupakis/dropbox-backup)
 ![LICENCE](https://img.shields.io/npm/l/dropbox-backup.svg)
+
+[![BUILD](https://api.travis-ci.org/akonoupakis/dropbox-backup.svg?branch=master)](http://travis-ci.org/akonoupakis/dropbox-backup)
+![STANDARDJS](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)
+[![DEPENDENCIES](https://david-dm.org/akonoupakis/dropbox-backup.svg)](https://david-dm.org/akonoupakis/dropbox-backup)
 
 [![NPM](https://nodei.co/npm/dropbox-backup.png?downloads=true)](https://nodei.co/npm/dropbox-backup/)
 
@@ -53,28 +56,6 @@ backup.run('test', backupFn);
 
 ```
 
+## copyright and license
 
-## license
-```
-The MIT License (MIT)
-
-Copyright (c) 2015 akon
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-```
+Code and documentation copyright 2015 akon. Code released under [the MIT license](https://cdn.rawgit.com/akonoupakis/drobox-backup/master/LICENSE).

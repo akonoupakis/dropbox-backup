@@ -1,0 +1,33 @@
+{
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc","closure"]
+    },    
+    "source": {
+        "include": [
+            "lib/DropboxBackup.js",
+            "lib/DropboxBackup.js",
+            "lib/DropboxBackup.js",
+            "lib/DropboxBackup.js",
+            "lib/DropboxBackup.js",
+            "lib/DropboxBackup.js",
+            "lib/DropboxBackup.js",
+            "lib/DropboxBackup.js"
+        ]
+    },
+    "opts": {
+        "template": "node_modules/minami",
+        "encoding": "utf8",
+        "destination": "./docs/jsdoc/",
+        "recurse": true,
+        "tutorials": "./docs/tutorials"
+    },
+    "templates": {
+        "default": {
+            "outputSourceFiles": false,
+            "includeDate": false
+        },
+        "cleverLinks": false,
+        "monospaceLinks": false
+    }
+}
