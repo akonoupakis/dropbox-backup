@@ -35,7 +35,6 @@
     "json-validation": "^1.0.4",
     "log4js": "^0.6.33",
     "moment": "^2.12.0",
-    "server-root": "^1.0.7",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
