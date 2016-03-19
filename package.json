@@ -16,7 +16,7 @@
   },
   "main": "./lib/DropboxBackup.js",
   "scripts": {
-	"test": "standard & mocha"
+    "test": "standard & mocha"
   },
   "standard": {
     "ignore": [
@@ -24,7 +24,7 @@
     ]
   },
   "files": [
-	"lib/**"
+    "lib/**"
   ],
   "license": "MIT",
   "homepage": "https://github.com/akonoupakis/dropbox-backup",
@@ -34,9 +34,9 @@
     "fs-extra": "^0.26.4",
     "json-validation": "^1.0.4",
     "log4js": "^0.6.33",
-    "moment": "^2.11.1",
-    "underscore": "^1.8.3",
-    "server-root": "^1.0.7"
+    "moment": "^2.12.0",
+    "server-root": "^1.0.7",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "dependency-check": "^2.5.1",
