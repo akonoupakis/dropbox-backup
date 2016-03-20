@@ -5,7 +5,7 @@
 
     var CustomProcessor = function() { }
     
-    CustomProcessor.prototype.process = function (archive, cb) {
+    CustomProcessor.prototype.process = function (context, archive, cb) {
       try {
         x.file('extra.txt', { name: 'extra.txt' });
         cb()
