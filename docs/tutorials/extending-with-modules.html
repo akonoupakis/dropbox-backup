@@ -5,10 +5,13 @@
 
     var CustomProcessor = function() { }
     
-    CustomProcessor.prototype.process = function (archive, cb) {
-      x.file('extra.txt', { name: 'extra.txt' });
-      
-      cb()
+    CustomProcessor.prototype.process = function (context, archive, cb) {
+      try {
+        x.file('extra.txt', { name: 'extra.txt' });
+        cb()
+      } catch(err) {
+        cb(err)
+      }
     }
 
     module.exports = CustomProcessor
