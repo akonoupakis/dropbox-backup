@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>UploadOnScheduleProcessor - Documentation</title>
+    <title>ArchiveProcessor - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,7 +28,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">UploadOnScheduleProcessor</h1>
+    <h1 class="page-title">ArchiveProcessor</h1>
     
 
     
@@ -41,7 +41,7 @@
 <header>
     
         <h2>
-        UploadOnScheduleProcessor
+        ArchiveProcessor
         </h2>
         
     
@@ -54,14 +54,14 @@
 
     
 
-    <h4 class="name" id="UploadOnScheduleProcessor"><span class="type-signature"></span>new UploadOnScheduleProcessor<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ArchiveProcessor"><span class="type-signature"></span>new ArchiveProcessor<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Uploads the archive in daily/weekly/monthly folders keeping the last 3 uploads in each one
+    The archive processor interface
 </div>
 
 
@@ -130,17 +130,6 @@
     </div>
 
     
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li><a href="BackupProcessor.html">BackupProcessor</a></li>
-    </ul>
-
-
-    
 
     
 
@@ -160,14 +149,14 @@
 
     
 
-    <h4 class="name" id="process"><span class="type-signature"></span>process<span class="signature">(context, cb)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="process"><span class="type-signature"></span>process<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
 
 
 <div class="description">
-    Process the processor procedure
+    Processes the archive
 </div>
 
 
@@ -178,10 +167,15 @@
 
 
 
-    <h5>Parameters:</h5>
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
     
 
-<table class="params">
+<table class="props">
     <thead>
     <tr>
         
@@ -203,13 +197,13 @@
 
         <tr>
             
-                <td class="name"><code>context</code></td>
+                <td class="name"><code>archive</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type"><a href="ProcessorContext.html">ProcessorContext</a></span>
+<span class="param-type">object</span>
 
 
             
@@ -219,7 +213,7 @@
 
             
 
-            <td class="description last">The processor context</td>
+            <td class="description last">The zip archive (see <a href="https://www.npmjs.com/package/archiver">https://www.npmjs.com/package/archiver</a>)</td>
         </tr>
 
     
@@ -232,7 +226,7 @@
             <td class="type">
             
                 
-<span class="param-type"><a href="BackupProcessor.html#~callback">BackupProcessor~callback</a></span>
+<span class="param-type"><a href="ArchiveProcessor.html#~callback">ArchiveProcessor~callback</a></span>
 
 
             
@@ -252,8 +246,6 @@
 
 
 
-
-
 <dl class="details">
 
     
@@ -262,11 +254,6 @@
 
     
 
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="BackupProcessor.html#process">BackupProcessor#process</a>
-    </li></ul></dd>
     
 
     
@@ -312,6 +299,132 @@
         
     
 
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+
+    
+
+    <h4 class="name" id="~callback"><span class="type-signature"></span>callback<span class="signature">(err)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>err</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Error</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The error occured</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
     
 
     
