@@ -5,14 +5,7 @@
     },    
     "source": {
         "include": [
-            "lib/DropboxBackup.js",
-            "lib/DropboxBackup.js",
-            "lib/DropboxBackup.js",
-            "lib/DropboxBackup.js",
-            "lib/DropboxBackup.js",
-            "lib/DropboxBackup.js",
-            "lib/DropboxBackup.js",
-            "lib/DropboxBackup.js"
+           "lib"
         ]
     },
     "opts": {
