@@ -22,7 +22,8 @@ resulting with the output file in the root of the dropbox application.
 
 ## usage
 
-Check out this [tutorial](https://cdn.rawgit.com/akonoupakis/dropbox-backup/master/docs/jsdoc/tutorial-getting-started.html) to get started.
+* [Getting started](https://cdn.rawgit.com/akonoupakis/dropbox-backup/master/docs/jsdoc/tutorial-getting-started.html)
+* [Extending with modules](https://cdn.rawgit.com/akonoupakis/dropbox-backup/master/docs/jsdoc/tutorial-extending-with-modules.html)
 
 ## copyright and license
 
