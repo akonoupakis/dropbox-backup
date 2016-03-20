@@ -62,36 +62,8 @@
 If so, it would keep the last 3 daily/weekly/monthly backups on structured folders.</p>
 <p>Also, you may speficy a custom name, to run a backup on demand, 
 resulting with the output file in the root of the dropbox application.</p>
-<h2>usage</h2><pre class="prettyprint source lang-js"><code>var DropboxBackup = require('dropbox-backup');
-
-var backup = new DropboxBackup({
-    key: &quot;DROPBOXKEY&quot;,
-    secret: &quot;DROPBOXSECRET&quot;,
-    token: &quot;DROPBOXTOKEN&quot;
-});
-
-var backupFn = function (x) {
-
-    // add a directory to the archive
-    x.archive.directory('./lib', 'lib');
-
-    // add a file to the archive
-    x.archive.file('file.txt');
-
-    // upload the archive to dropbox. 
-    // this takes an optional callback function
-    x.upload(function (err) {
-        if (err)
-            throw err;
-        else
-            console.log('completed');
-    });
-}
-
-// upload the backup to the daily/weekly/monthly folders
-backup.run(backupFn);
-// or upload a single backup as test.zip 
-backup.run('test', backupFn);</code></pre><h2>copyright and license</h2><p>Code and documentation copyright 2015 akon. Code released under <a href="https://cdn.rawgit.com/akonoupakis/drobox-backup/master/LICENSE">the MIT license</a>.</p></article>
+<h2>usage</h2><p>Check out this <a href="https://cdn.rawgit.com/akonoupakis/dropbox-backup/master/docs/jsdoc/tutorial-getting-started.html">tutorial</a> to get started.</p>
+<h2>copyright and license</h2><p>Code and documentation copyright 2015 akon. Code released under <a href="https://cdn.rawgit.com/akonoupakis/drobox-backup/master/LICENSE">the MIT license</a>.</p></article>
     </section>
 
 
