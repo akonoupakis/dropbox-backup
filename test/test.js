@@ -7,7 +7,7 @@ var credentials = {
 }
 
 describe('Backup', function () {
-  it('backup on schedule', function (done) {
+  it('Scheduled', function (done) {
     this.timeout(100000)
 
     var DropboxBackup = require('../lib/DropboxBackup.js')
@@ -30,7 +30,7 @@ describe('Backup', function () {
     })
   })
 
-  it('backup on demand', function (done) {
+  it('On demand', function (done) {
     this.timeout(100000)
 
     var DropboxBackup = require('../lib/DropboxBackup.js')

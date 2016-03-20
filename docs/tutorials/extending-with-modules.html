@@ -1,0 +1,32 @@
+<p>dropbox-backup may use other injected modules other than the custom archiving script, as reusable components to multiple installations</p>
+
+<h4>./sampleModule.js</h4>
+<pre class="prettyprint">
+
+    module.exports = function(x, cb) {
+      x.archive.file('extra.txt', { name: 'extra.txt' });
+      
+      cb()
+    }
+      
+</pre>
+
+<h4>Injecting the module</h4>
+<pre class="prettyprint">
+
+    var <a href="DropboxBackup.html">DropboxBackup</a> = require('dropbox-backup');
+    var <a href="ArchiveProcessor.html">sampleModule</a> = require('./sampleModule.js');
+    
+    var backup = new <a href="DropboxBackup.html">DropboxBackup</a>({
+        key: "DROPBOXKEY",
+        secret: "DROPBOXSECRET",
+        token: "DROPBOXTOKEN"
+    });
+
+    backup.use(sampleModule)
+    
+    backup.run('filename', function (x) {
+        ...
+    });
+      
+</pre>
