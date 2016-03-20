@@ -1,1 +1,55 @@
-test
+<p>So, here is a quick start<br />
+dropbox-backup uses the <a href="https://www.npmjs.com/package/archiver" target="_blank">archiver</a> module for archiving the output file and exposes its functionality to the end user.</p>
+
+<p>Reference its api documentation at <a href="http://archiverjs.com/docs/" target="_blank">http://archiverjs.com/docs/</a></p>
+
+<h4>Processing as a scheduled task</h4>
+<p>This will upload the archived file in daily/weekly/monthly folders skipping the upload if its not its time yet.<br />
+It keeps the last 3 uploads in each folder so that if needed to rollback further ago in the timeline, an older backup from the weekly/monthly folders can be found  
+</p>
+<pre class="prettyprint">
+
+    var <a href="DropboxBackup.html">DropboxBackup</a> = require('dropbox-backup');
+    var backup = new <a href="DropboxBackup.html">DropboxBackup</a>({
+        key: "DROPBOXKEY",
+        secret: "DROPBOXSECRET",
+        token: "DROPBOXTOKEN"
+    });
+
+    backup.run(function (x) {
+        // add a directory to the archive
+        x.archive.directory('./lib', 'lib');
+
+        // add a file to the archive
+        x.archive.file('file.txt', { name: 'lib/file.txt' });
+
+        // upload the archive to dropbox. 
+        // this takes an optional callback function should you need to continue
+        x.<a href="DropboxArchive.html#upload">upload</a>(function (err) {
+            if (err)
+                throw err;
+            else
+                console.log('completed');
+        });
+    });
+      
+</pre>
+
+<h4>Processing on demand</h4>
+<p>Should you want to run on demand the backup process, all it needs is a name for the file.<br />
+In this case, the uploaded files in the root, are not being removed in favor of newer uploads.
+</p>
+<pre class="prettyprint">
+
+    var <a href="DropboxBackup.html">DropboxBackup</a> = require('dropbox-backup');
+    var backup = new <a href="DropboxBackup.html">DropboxBackup</a>({
+        key: "DROPBOXKEY",
+        secret: "DROPBOXSECRET",
+        token: "DROPBOXTOKEN"
+    });
+
+    backup.run('filename', function (x) {
+        ...
+    });
+      
+</pre>

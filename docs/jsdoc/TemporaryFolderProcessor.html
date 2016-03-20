@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Tutorial: Getting started - Documentation</title>
+    <title>TemporaryFolderProcessor - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -28,76 +28,299 @@
 
 <div id="main">
     
-    <h1 class="page-title">Tutorial: Getting started</h1>
+    <h1 class="page-title">TemporaryFolderProcessor</h1>
     
 
-    <section>
+    
+
+
+
+
+<section>
 
 <header>
     
-
-    <h2>Getting started</h2>
+        <h2>
+        TemporaryFolderProcessor
+        </h2>
+        
+    
 </header>
 
 <article>
-    <p>So, here is a quick start<br />
-dropbox-backup uses the <a href="https://www.npmjs.com/package/archiver" target="_blank">archiver</a> module for archiving the output file and exposes its functionality to the end user.</p>
+    <div class="container-overview">
+    
+        
 
-<p>Reference its api documentation at <a href="http://archiverjs.com/docs/" target="_blank">http://archiverjs.com/docs/</a></p>
+    
 
-<h4>Processing as a scheduled task</h4>
-<p>This will upload the archived file in daily/weekly/monthly folders skipping the upload if its not its time yet.<br />
-It keeps the last 3 uploads in each folder so that if needed to rollback further ago in the timeline, an older backup from the weekly/monthly folders can be found  
-</p>
-<pre class="prettyprint">
+    <h4 class="name" id="TemporaryFolderProcessor"><span class="type-signature"></span>new TemporaryFolderProcessor<span class="signature">()</span><span class="type-signature"></span></h4>
 
-    var <a href="DropboxBackup.html">DropboxBackup</a> = require('dropbox-backup');
-    var backup = new <a href="DropboxBackup.html">DropboxBackup</a>({
-        key: "DROPBOXKEY",
-        secret: "DROPBOXSECRET",
-        token: "DROPBOXTOKEN"
-    });
+    
 
-    backup.run(function (x) {
-        // add a directory to the archive
-        x.archive.directory('./lib', 'lib');
 
-        // add a file to the archive
-        x.archive.file('file.txt', { name: 'lib/file.txt' });
 
-        // upload the archive to dropbox. 
-        // this takes an optional callback function should you need to continue
-        x.<a href="DropboxArchive.html#upload">upload</a>(function (err) {
-            if (err)
-                throw err;
-            else
-                console.log('completed');
-        });
-    });
-      
-</pre>
+<div class="description">
+    Creates the temporary folder for the backup process
+</div>
 
-<h4>Processing on demand</h4>
-<p>Should you want to run on demand the backup process, all it needs is a name for the file.<br />
-In this case, the uploaded files in the root, are not being removed in favor of newer uploads.
-</p>
-<pre class="prettyprint">
 
-    var <a href="DropboxBackup.html">DropboxBackup</a> = require('dropbox-backup');
-    var backup = new <a href="DropboxBackup.html">DropboxBackup</a>({
-        key: "DROPBOXKEY",
-        secret: "DROPBOXSECRET",
-        token: "DROPBOXTOKEN"
-    });
 
-    backup.run('filename', function (x) {
-        ...
-    });
-      
-</pre>
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+    </div>
+
+    
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="DropboxProcessor.html">DropboxProcessor</a></li>
+    </ul>
+
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="process"><span class="type-signature"></span>process<span class="signature">(context, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    Process the processor procedure
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>context</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="ProcessorContext.html">ProcessorContext</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The processor context</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="DropboxProcessor.html#~callback">DropboxProcessor~callback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The callback function</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="DropboxProcessor.html#process">DropboxProcessor#process</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
 </article>
 
 </section>
+
+
+
 
 </div>
 

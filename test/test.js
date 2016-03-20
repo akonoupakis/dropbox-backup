@@ -14,7 +14,7 @@ describe('Backup', function () {
 
     var backup = new DropboxBackup(credentials)
 
-    var fn = function (x) {
+    backup.run(function (x) {
       x.archive.directory('./lib', 'target/lib')
       x.archive.file('./test/test.js', {
         name: 'target/test.js'
@@ -27,9 +27,7 @@ describe('Backup', function () {
 
         done()
       })
-    }
-
-    backup.run(fn)
+    })
   })
 
   it('backup on demand', function (done) {
@@ -39,7 +37,7 @@ describe('Backup', function () {
 
     var backup = new DropboxBackup(credentials)
 
-    var fn = function (x) {
+    backup.run('custom-backup', function (x) {
       x.archive.directory('./lib', 'target/lib')
       x.archive.file('./test/test.js', {
         name: 'target/test.js'
@@ -52,9 +50,7 @@ describe('Backup', function () {
 
         done()
       })
-    }
-
-    backup.run('custom-backup', fn)
+    })
   })
 })
 
